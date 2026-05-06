@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0A0A0A">
     <title>Ru bench 130 🦍</title>
-    <!-- Vue & Tailwind -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <script>
@@ -20,7 +21,6 @@
             }
         }
     </script>
-
     <style>
         body { background-color: #000; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
@@ -32,66 +32,66 @@
 <body class="bg-gradient-to-br from-gray-900 via-black to-gray-950 sm:p-8">
 
     <div id="app" class="w-full max-w-md h-screen sm:h-[850px] bg-app-bg sm:border border-gray-800 sm:rounded-[40px] sm:shadow-2xl overflow-y-auto relative shadow-red-900/10">
-        
         <div class="p-6 pb-24">
-            <!-- Header -->
-            <div class="text-center mb-8 mt-4">
-                <h1 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 uppercase tracking-tighter">
-                    Ru Bench 130
-                </h1>
-                <p class="text-gray-500 text-sm mt-1 font-semibold tracking-widest">MISSION KAF</p>
+            
+            <div class="text-center mb-6 mt-2">
+                <h1 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 uppercase tracking-tighter">Ru Bench 130</h1>
             </div>
 
             <!-- TABS -->
-            <div class="flex bg-app-card rounded-2xl p-1 mb-8 shadow-inner border border-gray-800">
-                <button @click="currentTab = 'dash'" 
-                    class="flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300"
-                    :class="currentTab === 'dash' ? 'bg-gradient-to-b from-red-500 to-red-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'">
-                    Dashboard
-                </button>
-                <button @click="currentTab = 'train'" 
-                    class="flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300"
-                    :class="currentTab === 'train' ? 'bg-gradient-to-b from-red-500 to-red-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'">
-                    Entraînement
-                </button>
+            <div class="flex bg-app-card rounded-2xl p-1 mb-6 shadow-inner border border-gray-800 text-xs sm:text-sm">
+                <button @click="currentTab = 'dash'" class="flex-1 py-3 font-bold rounded-xl transition-all duration-300" :class="currentTab === 'dash' ? 'bg-gradient-to-b from-red-500 to-red-600 text-white' : 'text-gray-400 hover:text-white'">Dash</button>
+                <button @click="currentTab = 'train'" class="flex-1 py-3 font-bold rounded-xl transition-all duration-300" :class="currentTab === 'train' ? 'bg-gradient-to-b from-red-500 to-red-600 text-white' : 'text-gray-400 hover:text-white'">Train</button>
+                <button @click="currentTab = 'history'" class="flex-1 py-3 font-bold rounded-xl transition-all duration-300" :class="currentTab === 'history' ? 'bg-gradient-to-b from-red-500 to-red-600 text-white' : 'text-gray-400 hover:text-white'">Histo</button>
             </div>
 
             <!-- TAB 1 : DASHBOARD -->
             <transition name="fade" mode="out-in">
                 <div v-if="currentTab === 'dash'" key="dash" class="space-y-6">
-                    
+                    <!-- Stats -->
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-gradient-to-br from-gray-800 to-app-card p-5 rounded-3xl border border-gray-700/50 shadow-lg relative overflow-hidden group">
-                            <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity"><span @click="updateBench" class="cursor-pointer text-xl">✏️</span></div>
+                        <div class="bg-gradient-to-br from-gray-800 to-app-card p-5 rounded-3xl border border-gray-700/50 relative group">
+                            <span @click="updateBench" class="absolute top-3 right-3 opacity-50 text-xl cursor-pointer">✏️</span>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Bench Max</p>
-                            <p class="text-4xl font-black text-white tracking-tighter">{{ stats.bench }} <span class="text-lg font-bold text-red-500">kg</span></p>
+                            <p class="text-4xl font-black text-white">{{ stats.bench }}<span class="text-lg text-red-500">kg</span></p>
                         </div>
-                        <div class="bg-gradient-to-br from-gray-800 to-app-card p-5 rounded-3xl border border-gray-700/50 shadow-lg relative overflow-hidden group">
-                            <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity"><span @click="updateWeight" class="cursor-pointer text-xl">✏️</span></div>
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Poids Actuel</p>
-                            <p class="text-4xl font-black text-white tracking-tighter">{{ stats.weight }} <span class="text-lg font-bold text-red-500">kg</span></p>
+                        <div class="bg-gradient-to-br from-gray-800 to-app-card p-5 rounded-3xl border border-gray-700/50 relative group">
+                            <span @click="updateWeight" class="absolute top-3 right-3 opacity-50 text-xl cursor-pointer">✏️</span>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Poids</p>
+                            <p class="text-4xl font-black text-white">{{ stats.weight }}<span class="text-lg text-red-500">kg</span></p>
                         </div>
                     </div>
 
-                    <!-- Daily Checklist -->
-                    <div class="bg-app-card p-6 rounded-3xl border border-gray-800 shadow-xl mt-6">
-                        <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-xl font-black text-white tracking-tight">Checklist du Jour</h2>
-                            <button @click="resetChecklist" class="text-xs font-bold text-gray-500 hover:text-white bg-gray-800 px-3 py-1 rounded-full transition-colors">Reset</button>
+                    <!-- Calculateur 1RM -->
+                    <div class="bg-app-card p-5 rounded-3xl border border-gray-800">
+                        <h2 class="text-lg font-black text-white mb-3">🧮 Calculateur 1RM</h2>
+                        <div class="flex space-x-2">
+                            <input type="number" v-model="calc1rm.weight" placeholder="Poids (kg)" class="w-1/3 bg-gray-900 border border-gray-700 text-white p-2 rounded-xl text-center outline-none focus:border-red-500">
+                            <input type="number" v-model="calc1rm.reps" placeholder="Reps" class="w-1/3 bg-gray-900 border border-gray-700 text-white p-2 rounded-xl text-center outline-none focus:border-red-500">
+                            <div class="w-1/3 bg-red-500/20 text-red-400 flex items-center justify-center rounded-xl font-black border border-red-500/50">
+                                {{ estimated1RM }} kg
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist & Sommeil -->
+                    <div class="bg-app-card p-5 rounded-3xl border border-gray-800">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-black text-white">Checklist du Jour</h2>
+                            <button @click="resetChecklist" class="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded-full">Reset</button>
                         </div>
                         
-                        <div class="space-y-3">
-                            <div @click="dailyCheck.creatine = !dailyCheck.creatine; saveData()" class="flex items-center justify-between p-4 rounded-2xl cursor-pointer transition-all duration-200 border" :class="dailyCheck.creatine ? 'bg-red-500/10 border-red-500/50' : 'bg-gray-800/50 border-transparent hover:bg-gray-800'">
-                                <div class="flex items-center space-x-3"><span class="text-xl">⚡</span><span class="font-bold" :class="dailyCheck.creatine ? 'text-red-400' : 'text-gray-300'">Créatine (5g)</span></div>
-                                <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors" :class="dailyCheck.creatine ? 'border-red-500 bg-red-500' : 'border-gray-600'"><svg v-if="dailyCheck.creatine" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
-                            </div>
-                            <div @click="dailyCheck.macros = !dailyCheck.macros; saveData()" class="flex items-center justify-between p-4 rounded-2xl cursor-pointer transition-all duration-200 border" :class="dailyCheck.macros ? 'bg-red-500/10 border-red-500/50' : 'bg-gray-800/50 border-transparent hover:bg-gray-800'">
-                                <div class="flex items-center space-x-3"><span class="text-xl">🥩</span><span class="font-bold" :class="dailyCheck.macros ? 'text-red-400' : 'text-gray-300'">Protéines OK</span></div>
-                                <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors" :class="dailyCheck.macros ? 'border-red-500 bg-red-500' : 'border-gray-600'"><svg v-if="dailyCheck.macros" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
-                            </div>
-                            <div @click="dailyCheck.magnesium = !dailyCheck.magnesium; saveData()" class="flex items-center justify-between p-4 rounded-2xl cursor-pointer transition-all duration-200 border" :class="dailyCheck.magnesium ? 'bg-red-500/10 border-red-500/50' : 'bg-gray-800/50 border-transparent hover:bg-gray-800'">
-                                <div class="flex items-center space-x-3"><span class="text-xl">💊</span><span class="font-bold" :class="dailyCheck.magnesium ? 'text-red-400' : 'text-gray-300'">Magnésium (Soir)</span></div>
-                                <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors" :class="dailyCheck.magnesium ? 'border-red-500 bg-red-500' : 'border-gray-600'"><svg v-if="dailyCheck.magnesium" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                        <div class="space-y-2 mb-4">
+                            <div @click="toggleCheck('creatine')" class="flex justify-between p-3 rounded-xl border" :class="dailyCheck.creatine ? 'bg-red-500/10 border-red-500/50' : 'bg-gray-800/50 border-transparent'"><span>⚡ Créatine (5g)</span><span>{{ dailyCheck.creatine ? '✅' : '⬛' }}</span></div>
+                            <div @click="toggleCheck('macros')" class="flex justify-between p-3 rounded-xl border" :class="dailyCheck.macros ? 'bg-red-500/10 border-red-500/50' : 'bg-gray-800/50 border-transparent'"><span>🥩 Protéines OK</span><span>{{ dailyCheck.macros ? '✅' : '⬛' }}</span></div>
+                            <div @click="toggleCheck('magnesium')" class="flex justify-between p-3 rounded-xl border" :class="dailyCheck.magnesium ? 'bg-red-500/10 border-red-500/50' : 'bg-gray-800/50 border-transparent'"><span>💊 Magnésium</span><span>{{ dailyCheck.magnesium ? '✅' : '⬛' }}</span></div>
+                        </div>
+
+                        <!-- Sommeil Tracker -->
+                        <div class="pt-4 border-t border-gray-800">
+                            <p class="text-sm font-bold text-gray-400 mb-2">Qualité du sommeil (Testo) :</p>
+                            <div class="flex space-x-2 text-2xl justify-center">
+                                <span v-for="n in 5" :key="n" @click="dailyCheck.sleep = n; saveData()" class="cursor-pointer transition-transform hover:scale-125" :class="dailyCheck.sleep >= n ? 'text-yellow-400' : 'text-gray-700 grayscale'">⭐</span>
                             </div>
                         </div>
                     </div>
@@ -103,61 +103,86 @@
                 <div v-if="currentTab === 'train'" key="train" class="space-y-4">
                     
                     <div v-if="!selectedSession" class="space-y-4">
-                        <button @click="openSession('A')" class="w-full relative overflow-hidden group rounded-3xl p-6 text-left border border-gray-800 bg-gradient-to-br from-gray-800 to-app-card hover:border-red-500/50 transition-all duration-300 transform sm:hover:scale-[1.02]">
-                            <div class="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-red-500/20 transition-all"></div>
-                            <h2 class="text-3xl font-black text-white tracking-tight mb-1">Séance A</h2>
-                            <p class="text-red-400 font-bold text-sm tracking-widest uppercase mb-1">Lundi</p>
-                            <p class="text-gray-400 text-sm">Force Bench & Triceps</p>
-                        </button>
-                        <button @click="openSession('B')" class="w-full relative overflow-hidden group rounded-3xl p-6 text-left border border-gray-800 bg-gradient-to-br from-gray-800 to-app-card hover:border-blue-500/50 transition-all duration-300 transform sm:hover:scale-[1.02]">
-                            <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-blue-500/20 transition-all"></div>
-                            <h2 class="text-3xl font-black text-white tracking-tight mb-1">Séance B</h2>
-                            <p class="text-blue-400 font-bold text-sm tracking-widest uppercase mb-1">Mercredi</p>
-                            <p class="text-gray-400 text-sm">Épaisseur Dos & Arr. Épaule</p>
-                        </button>
-                        <button @click="openSession('C')" class="w-full relative overflow-hidden group rounded-3xl p-6 text-left border border-gray-800 bg-gradient-to-br from-gray-800 to-app-card hover:border-purple-500/50 transition-all duration-300 transform sm:hover:scale-[1.02]">
-                            <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-purple-500/20 transition-all"></div>
-                            <h2 class="text-3xl font-black text-white tracking-tight mb-1">Séance C</h2>
-                            <p class="text-purple-400 font-bold text-sm tracking-widest uppercase mb-1">Samedi</p>
-                            <p class="text-gray-400 text-sm">Bras & Épaules (Densité)</p>
+                        <button v-for="(sess, key) in workouts" :key="key" @click="openSession(key)" class="w-full relative overflow-hidden group rounded-3xl p-6 text-left border border-gray-800 bg-gradient-to-br from-gray-800 to-app-card">
+                            <h2 class="text-3xl font-black text-white mb-1">Séance {{ key }}</h2>
+                            <p class="text-gray-400 text-sm">{{ sess.length }} Exercices</p>
                         </button>
                     </div>
 
                     <div v-if="selectedSession">
-                        <div class="flex justify-between items-center mb-6">
+                        <!-- HEADER SEANCE + CHRONO -->
+                        <div class="sticky top-0 bg-app-bg/90 backdrop-blur-md z-10 py-4 border-b border-gray-800 flex justify-between items-center mb-4">
                             <div>
-                                <p class="text-red-500 font-bold text-xs uppercase tracking-widest mb-1">En cours</p>
-                                <h2 class="text-3xl font-black text-white tracking-tighter">Séance {{ selectedSession }}</h2>
+                                <h2 class="text-2xl font-black text-white">Séance {{ selectedSession }}</h2>
+                                <button @click="editMode = !editMode" class="text-xs text-red-500 font-bold uppercase mt-1">{{ editMode ? '💾 Sauvegarder' : '⚙️ Éditer Programme' }}</button>
                             </div>
-                            <button @click="selectedSession = null" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-xl font-bold transition-colors">Retour</button>
+                            
+                            <!-- Chrono Silencieux -->
+                            <div class="flex items-center bg-gray-800 rounded-xl p-2 border border-gray-700">
+                                <span class="text-xl font-mono text-white font-bold w-14 text-center">{{ formattedTime }}</span>
+                                <button @click="toggleTimer" class="mx-2 text-lg">{{ timerRunning ? '⏸️' : '▶️' }}</button>
+                                <button @click="resetTimer" class="text-lg">🔄</button>
+                            </div>
                         </div>
 
+                        <!-- LISTE EXERCICES -->
                         <div class="space-y-4">
-                            <div v-for="(exo, index) in workouts[selectedSession]" :key="index" class="bg-app-card border border-gray-800 p-5 rounded-2xl relative overflow-hidden shadow-lg">
-                                <div class="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-white">{{ exo.name }}</h3>
-                                        <p class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">{{ exo.sets }}</p>
+                            <div v-for="(exo, index) in workouts[selectedSession]" :key="index" class="bg-app-card border border-gray-800 p-4 rounded-2xl shadow-lg">
+                                
+                                <!-- Mode Normal -->
+                                <div v-if="!editMode">
+                                    <div class="flex justify-between mb-3">
+                                        <div><h3 class="font-bold text-white">{{ exo.name }}</h3><p class="text-xs text-gray-500 uppercase">{{ exo.sets }}</p></div>
                                     </div>
-                                    <span class="text-3xl opacity-10 font-black italic">{{ index + 1 }}</span>
+                                    <div class="flex space-x-2">
+                                        <input type="number" v-model="exo.lastWeight" placeholder="Poids" class="w-1/2 bg-gray-900 border border-gray-700 text-white p-2 rounded-lg text-center font-bold" @change="saveData">
+                                        <input type="text" v-model="exo.lastReps" placeholder="Reps (ex: 5,4,4)" class="w-1/2 bg-gray-900 border border-gray-700 text-white p-2 rounded-lg text-center text-sm" @change="saveData">
+                                    </div>
                                 </div>
-                                <div class="flex space-x-3">
-                                    <div class="w-1/2 relative">
-                                        <label class="text-[10px] uppercase text-gray-500 font-bold absolute -top-2 left-3 bg-app-card px-1">Poids (kg)</label>
-                                        <input type="number" v-model="exo.lastWeight" class="w-full bg-gray-900 border border-gray-700 focus:border-red-500 outline-none text-white p-3 rounded-xl text-center font-bold text-xl transition-colors" @change="saveData">
-                                    </div>
-                                    <div class="w-1/2 relative">
-                                        <label class="text-[10px] uppercase text-gray-500 font-bold absolute -top-2 left-3 bg-app-card px-1">Reps faites</label>
-                                        <input type="text" v-model="exo.lastReps" placeholder="ex: 5,5,4" class="w-full bg-gray-900 border border-gray-700 focus:border-red-500 outline-none text-white p-3 rounded-xl text-center font-semibold text-sm transition-colors" @change="saveData">
-                                    </div>
+
+                                <!-- Mode Édition -->
+                                <div v-if="editMode" class="flex flex-col space-y-2">
+                                    <input v-model="exo.name" class="bg-gray-900 border border-red-500 text-white p-2 rounded-lg" placeholder="Nom Exercice">
+                                    <input v-model="exo.sets" class="bg-gray-900 border border-red-500 text-white p-2 rounded-lg text-sm" placeholder="Séries (ex: 4x5)">
+                                    <button @click="workouts[selectedSession].splice(index, 1); saveData()" class="text-xs text-red-500 text-right font-bold">🗑️ Supprimer</button>
                                 </div>
                             </div>
+
+                            <!-- Ajouter Exo -->
+                            <button v-if="editMode" @click="addExercise" class="w-full border-2 border-dashed border-gray-700 text-gray-400 p-4 rounded-2xl font-bold hover:text-white hover:border-white transition-colors">+ Ajouter un exercice</button>
                         </div>
 
-                        <button @click="selectedSession = null" class="w-full mt-8 mb-4 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white p-4 rounded-2xl font-black text-lg tracking-wide shadow-lg shadow-red-600/30 transition-all transform hover:-translate-y-1">
-                            TERMINER LA SÉANCE
-                        </button>
+                        <div class="flex space-x-2 mt-8 mb-4">
+                            <button @click="selectedSession = null" class="w-1/3 bg-gray-800 text-white p-4 rounded-2xl font-bold">Retour</button>
+                            <button @click="finishSession" class="w-2/3 bg-gradient-to-r from-red-600 to-red-500 text-white p-4 rounded-2xl font-black shadow-lg shadow-red-600/30">TERMINER</button>
+                        </div>
                     </div>
+                </div>
+            </transition>
+
+            <!-- TAB 3 : HISTORIQUE -->
+            <transition name="fade" mode="out-in">
+                <div v-if="currentTab === 'history'" key="history" class="space-y-4">
+                    <h2 class="text-2xl font-black text-white mb-4">Historique</h2>
+                    
+                    <div v-if="history.length === 0" class="text-gray-500 text-center py-10">Aucune séance terminée pour le moment.</div>
+                    
+                    <div v-for="(log, idx) in history.slice().reverse()" :key="idx" class="bg-app-card border border-gray-800 p-4 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-red-500">{{ log.date }}</span>
+                            <span class="text-xs text-gray-400">Poids: {{ log.bodyWeight }}kg</span>
+                        </div>
+                        <h3 class="text-lg font-black text-white">Séance {{ log.session }}</h3>
+                        <p class="text-sm text-gray-400 mt-1">Sommeil la veille : <span class="text-yellow-400">{{ '⭐'.repeat(log.sleep) }}</span><span class="text-gray-700 grayscale">{{ '⭐'.repeat(5 - log.sleep) }}</span></p>
+                        
+                        <div class="mt-3 pt-3 border-t border-gray-800 text-xs text-gray-300 space-y-1">
+                            <div v-for="exo in log.exercises" :key="exo.name" class="flex justify-between">
+                                <span>{{ exo.name }}</span>
+                                <span class="font-bold text-white">{{ exo.lastWeight }}kg ({{ exo.lastReps }})</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button v-if="history.length > 0" @click="clearHistory" class="w-full mt-4 text-xs text-red-500/50 hover:text-red-500 py-2">Effacer l'historique</button>
                 </div>
             </transition>
         </div>
@@ -165,52 +190,79 @@
 
     <script>
         const { createApp } = Vue
-
         createApp({
             data() {
                 return {
-                    currentTab: 'dash',
-                    selectedSession: null,
+                    currentTab: 'dash', selectedSession: null, editMode: false,
                     stats: { bench: 80, weight: 78.7 },
-                    dailyCheck: { creatine: false, macros: false, magnesium: false },
+                    dailyCheck: { creatine: false, macros: false, magnesium: false, sleep: 0 },
+                    calc1rm: { weight: '', reps: '' },
+                    history: [],
+                    timer: 0, timerInterval: null, timerRunning: false,
                     workouts: {
                         'A': [
                             { name: 'Bench Barre', sets: '4 séries x 3-5 reps', lastWeight: '', lastReps: '' },
                             { name: 'Incliné Haltères', sets: '3 séries x 8-10 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Dips (Triceps)', sets: '3 séries x Échec', lastWeight: '', lastReps: '' },
-                            { name: 'Haltères au front', sets: '3 séries x 10-12 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Élévations latérales', sets: '4 séries x 15-20 reps', lastWeight: '', lastReps: '' }
+                            { name: 'Dips (Triceps)', sets: '3 séries x Échec', lastWeight: '', lastReps: '' }
                         ],
                         'B': [
                             { name: 'Rowing Barre', sets: '4 séries x 8-10 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Face-Pull', sets: '4 séries x 15-20 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Tirage Vertical', sets: '3 séries x 10 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Oiseau Haltères', sets: '3 séries x 12-15 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Curl Poulie + Prona.', sets: '3 séries x 12 reps', lastWeight: '', lastReps: '' }
-                        ],
-                        'C': [
-                            { name: 'Dips (Rappel)', sets: '3 séries x Échec', lastWeight: '', lastReps: '' },
-                            { name: 'Curl Incliné', sets: '3 séries x 10-12 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Triceps Poulie Haute', sets: '4 séries x 12-15 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Hammer Curl', sets: '3 séries x 10-12 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Incliné Léger', sets: '3 séries x 12-15 reps', lastWeight: '', lastReps: '' },
-                            { name: 'Face-Pull', sets: '3 séries x 20 reps', lastWeight: '', lastReps: '' }
+                            { name: 'Tirage Vertical', sets: '3 séries x 10 reps', lastWeight: '', lastReps: '' }
                         ]
                     }
                 }
             },
+            computed: {
+                estimated1RM() {
+                    let w = parseFloat(this.calc1rm.weight); let r = parseInt(this.calc1rm.reps);
+                    if (w > 0 && r > 0) return Math.round(w * (1 + 0.0333 * r));
+                    return 0;
+                },
+                formattedTime() {
+                    let m = Math.floor(this.timer / 60); let s = this.timer % 60;
+                    return `${m}:${s < 10 ? '0' : ''}${s}`;
+                }
+            },
             mounted() { this.loadData(); },
             methods: {
-                openSession(session) { window.scrollTo(0,0); this.selectedSession = session; },
-                updateBench() { let val = prompt("Nouveau max au Bench (kg) :", this.stats.bench); if(val) { this.stats.bench = val; this.saveData(); } },
+                openSession(session) { window.scrollTo(0,0); this.selectedSession = session; this.editMode = false; },
+                updateBench() { let val = prompt("Nouveau max Bench (kg) :", this.stats.bench); if(val) { this.stats.bench = val; this.saveData(); } },
                 updateWeight() { let val = prompt("Poids actuel (kg) :", this.stats.weight); if(val) { this.stats.weight = val; this.saveData(); } },
-                resetChecklist() { this.dailyCheck = { creatine: false, macros: false, magnesium: false }; this.saveData(); },
+                toggleCheck(item) { this.dailyCheck[item] = !this.dailyCheck[item]; this.saveData(); },
+                resetChecklist() { this.dailyCheck = { creatine: false, macros: false, magnesium: false, sleep: 0 }; this.saveData(); },
+                
+                // Chrono silencieux
+                toggleTimer() {
+                    if (this.timerRunning) { clearInterval(this.timerInterval); this.timerRunning = false; } 
+                    else { this.timerRunning = true; this.timerInterval = setInterval(() => { this.timer++; }, 1000); }
+                },
+                resetTimer() { clearInterval(this.timerInterval); this.timerRunning = false; this.timer = 0; },
+                
+                // Édition de séance
+                addExercise() { this.workouts[this.selectedSession].push({ name: 'Nouvel Exo', sets: '3x10', lastWeight: '', lastReps: '' }); this.saveData(); },
+                
+                // Fin de séance & Historique
+                finishSession() {
+                    const today = new Date().toLocaleDateString('fr-FR');
+                    const sessionLog = {
+                        date: today, session: this.selectedSession, sleep: this.dailyCheck.sleep,
+                        bodyWeight: this.stats.weight, exercises: JSON.parse(JSON.stringify(this.workouts[this.selectedSession]))
+                    };
+                    this.history.push(sessionLog);
+                    this.saveData();
+                    this.selectedSession = null;
+                    this.resetTimer();
+                    alert("Séance sauvegardée dans l'historique ! 🦍");
+                },
+                clearHistory() { if(confirm("Supprimer tout l'historique ?")) { this.history = []; this.saveData(); } },
+                
+                // Sauvegarde
                 saveData() {
-                    const appData = { stats: this.stats, dailyCheck: this.dailyCheck, workouts: this.workouts };
-                    localStorage.setItem('rubench130Data', JSON.stringify(appData));
+                    const appData = { stats: this.stats, dailyCheck: this.dailyCheck, workouts: this.workouts, history: this.history };
+                    localStorage.setItem('rubenchV2Data', JSON.stringify(appData));
                 },
                 loadData() {
-                    const saved = localStorage.getItem('rubench130Data');
+                    const saved = localStorage.getItem('rubenchV2Data');
                     if (saved) Object.assign(this.$data, JSON.parse(saved));
                 }
             }
